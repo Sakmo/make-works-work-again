@@ -1,0 +1,59 @@
+/* Level-only single highlights */
+tr.level-junior td {
+  background-color: #bbffc4 !important;
+}
+tr.level-intermediate td {
+  background-color: #b6d7ff !important;
+}
+tr.level-senior td {
+  background-color: #ffa9a9 !important;
+}
+
+/* Combo highlights — distinct pastel combos */
+tr.level-junior-intermediate td,
+tr.level-intermediate-junior td {
+  background-color: #a3fff6 !important;
+}
+tr.level-junior-senior td,
+tr.level-senior-junior td {
+  background-color: #d2d2d2 !important;
+}
+tr.level-intermediate-senior td,
+tr.level-senior-intermediate td {
+  background-color: #e1aeff !important;
+}
+tr.level-junior-intermediate-senior td,
+tr.level-intermediate-junior-senior td,
+tr.level-senior-junior-intermediate td {
+  background-color: #fcffc7 !important;
+}
+
+/* Urgent rows (less than 3 days to deadline) */
+tr.urgent td {
+  color: red !important;
+  font-weight: bold;
+}
+
+
+@keyframes woohooFade {
+  0% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(2) rotate(720deg);
+  }
+}
+
+.brampton-lol {
+  font-size: 20px;
+  animation: lolShake 1s infinite;
+}
+
+@keyframes lolShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(8deg); }
+  50% { transform: rotate(-8deg); }
+  75% { transform: rotate(5deg); }
+}

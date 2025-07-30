@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Job Highlighter",
+  "version": "1.1",
+  "description": "Highlights job rows by level and deadline urgency.",
+  "content_scripts": [
+    {
+        "matches": ["https://waterlooworks.uwaterloo.ca/*"],
+        "js": ["content.js"],
+        "css": ["style.css"]
+    }
+    ],
+  "permissions": ["scripting"]
+}
