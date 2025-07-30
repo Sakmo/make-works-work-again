@@ -11,7 +11,7 @@ function isUrgent(dateString) {
 
   // If date fails to parse, bail
   if (isNaN(deadline.getTime())) {
-    console.warn("❌ Invalid deadline:", dateString);
+    console.warn("Invalid deadline:", dateString);
     return false;
   }
 
@@ -21,33 +21,6 @@ function isUrgent(dateString) {
   return deadline < threeDaysLater;
 }
 
-
-
-
-function swppWarning() {
-  const banner = document.createElement("div");
-  banner.innerText = "❌ SWPP JOB DETECTED ❌";
-  banner.style.cssText = `
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background: crimson;
-    color: white;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 1rem;
-    z-index: 999999;
-  `;
-  document.body.appendChild(banner);
-  setTimeout(() => banner.remove(), 2500);
-
-  // audio
-  const audio = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
-  audio.volume = 1;
-  audio.play().catch(() => console.warn("🔇 User hasn't interacted yet, can't autoplay"));
-}
 
 function showBanner({ text, color = "crimson", duration = 4000 }) {
   const banner = document.createElement("div");
@@ -72,7 +45,7 @@ function showBanner({ text, color = "crimson", duration = 4000 }) {
 function playBeep() {
     const audio = new Audio("https://actions.google.com/sounds/v1/alarms/beep_short.ogg");
     audio.volume = 1;
-    audio.play().catch(() => console.warn("🔇 User hasn't interacted yet, can't autoplay"));
+    audio.play().catch(() => console.warn("User hasn't interacted yet, can't autoplay"));
 }
 
 function detectKeywordsInModal() {
@@ -120,7 +93,7 @@ function getColumnIndexes() {
     const text = cell.innerText.toLowerCase();
     if (text.includes("level") || text.includes("type")) {
       levelIndex = i;
-      deadlineIndex = i + 2;  // 🔥 deadline is always 2 columns after level
+      deadlineIndex = i + 2; 
     }
   });
 
@@ -130,7 +103,6 @@ function getColumnIndexes() {
 
 
 function highlightJobs() {
-  console.log("🔥 Re-highlighting jobs...");
 
   document.querySelectorAll('tr.table__row--body').forEach((row) => {
     const cells = row.querySelectorAll("td");
@@ -140,8 +112,7 @@ function highlightJobs() {
     const deadlineText = cells[7]?.innerText?.trim() || '';
 
     const levelKey = getLevelKey(levelText);
-    console.log("📊 Level text:", levelText, "| Level key:", levelKey);
-    console.log("📅 Deadline text:", deadlineText);
+    console.log("Level:", levelText, "Deadline: ", deadlineText);
 
     // ✅ REMOVE old level- and urgent classes
     row.className = row.className
@@ -205,13 +176,13 @@ function setupManualReloadButton() {
     `;
 
     button.addEventListener("click", () => {
-      console.log("🔁 Re-highlighting jobs...");
+      console.log("Re-highlighting jobs...");
       highlightJobs();
     });
 
     document.body.appendChild(button);
   } catch (err) {
-    console.warn("🔁 Could not create reload button:", err);
+    console.warn("Could not create reload button:", err);
   }
 }
 
@@ -242,7 +213,7 @@ function detectSWPP() {
   }
 }
 
-console.log("🚀 Job Highlighter script injected");
+console.log("Job Highlighter script injected");
 
 document.addEventListener("click", function (e) {
   const link = e.target.closest('a[href="javascript:void(0)"]');
